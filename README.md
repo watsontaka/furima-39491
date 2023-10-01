@@ -53,9 +53,9 @@
 ## addresses テーブル
 | Column          | Type       | Options                        |
 | --------------- | ---------- | ------------------------------ |
-| purchase        | references | null: false                    |
+| purchase        | references | null: false, foreign_key: true |
 | post_code       | string     | null: false                    |
-| prefecture_id   | integer    | null: false                    |
+| region_id       | integer    | null: false                    |
 | city            | string     | null: false                    |
 | home_number     | string     | null: false                    |
 | building        | string     |                                |
@@ -65,17 +65,17 @@
 
 - belongs_to    :purchase
 
-- belongs_to_active_hash :prefecture
+- belongs_to_active_hash :region
 
 
 
 
 ## purchases テーブル
 
-| Column          | Type          | Options              |
-| --------------- | ------------- | -------------------- |
-| user            | references    | foreign_key: true    |
-| item            | references    | foreign_key: true    |
+| Column          | Type          | Options                           |
+| --------------- | ------------- | --------------------------------- |
+| user            | references    | foreign_key: true, null: false    |
+| item            | references    | foreign_key: true, null: false    |
 
 
 ### Association
