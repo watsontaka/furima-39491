@@ -2,6 +2,8 @@ FactoryBot.define do
   factory :item do
     Faker::Config.locale = :ja
 
+    association :user
+
     item_name    { Faker::Books::CultureSeries.book }
     explain      { Faker::Lorem.sentence }
     category_id  { Faker::Number.between(from: 2, to: 10) }
@@ -10,7 +12,6 @@ FactoryBot.define do
     region_id    { Faker::Number.between(from: 2, to: 48) }
     period_id    { Faker::Number.between(from: 2, to: 3) }
     price        { Faker::Number.between(from: 300, to: 9_999_999) }
-    user_id      { FactoryBot.create(:user).id }
 
     after(:build) do |item|
       item.image.attach(io: File.open('public/images/797.png'), filename: '797.png')

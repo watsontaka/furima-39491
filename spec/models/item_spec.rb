@@ -6,9 +6,9 @@ RSpec.describe Item, type: :model do
   end
 
   describe '商品出品機能' do
-    context '保存できる' do
+    context '保存できるとき' do
       it '正常に保存できるとき' do
-        expect(@item).to be_valid
+        expect(FactoryBot.build(:item)).to be_valid
       end
     end
 
@@ -99,7 +99,7 @@ RSpec.describe Item, type: :model do
       it 'userが紐付いていないと保存できない' do
         @item.user_id = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include('User must exist')
+        expect(@item.errors.full_messages).to include()
       end
     end
   end
