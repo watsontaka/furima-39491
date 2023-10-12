@@ -2,9 +2,8 @@ class Item < ApplicationRecord
   with_options presence: true do
     validates :item_name
     validates :explain
-    validates :user
     validates :image
-    validates :price, format: { with: /\A[0-9]+\z/ }, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
+    validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
   end
 
   with_options numericality: { other_than: 1 } do
@@ -19,9 +18,9 @@ class Item < ApplicationRecord
   has_one_attached :image
 
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :Category
-  belongs_to :Quality
-  belongs_to :Cost
-  belongs_to :Region
-  belongs_to :Period
+  belongs_to :category
+  belongs_to :quality
+  belongs_to :cost
+  belongs_to :region
+  belongs_to :period
 end
