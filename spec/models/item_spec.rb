@@ -15,7 +15,8 @@ RSpec.describe Item, type: :model do
     context '保存できない' do
       it 'imageが空では保存できない' do
         @item.image = nil
-        expect(@item.errors.full_messages).to include
+        @item.valid?
+        expect(@item.errors.full_messages).to include ("Image can't be blank")
       end
 
       it 'item_nameが空では保存できない' do
