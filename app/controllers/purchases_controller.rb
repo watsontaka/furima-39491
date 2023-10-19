@@ -1,11 +1,11 @@
 class PurchasesController < ApplicationController
   before_action :authenticate_user!, only: [:index]
+  before_action :item_find,only:[:index,:create]
   before_action :move_to_index, only: [:index]
   before_action :sold_out, only: [:index]
 
   def index
     gon.public_key = ENV['PAYJP_PUBLIC_KEY']
-    @item = Item.find(params[:item_id])
     @purchase_address = PurchaseAddress.new
   end
 
@@ -13,7 +13,6 @@ class PurchasesController < ApplicationController
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @purchase_address = PurchaseAddress.new(purchase_params)
     if @purchase_address.valid?
       pay_item
@@ -26,6 +25,10 @@ class PurchasesController < ApplicationController
   end
 
   private
+
+  def item_find
+    @item = Item.find(params[:item_id])
+  end
 
   def purchase_params
     params.require(:purchase_address).permit(:post_code, :region_id, :city, :home_number, :phone_number, :building).merge(
@@ -43,7 +46,6 @@ class PurchasesController < ApplicationController
   end
 
   def move_to_index
-    @item = Item.find(params[:item_id])
     return unless current_user.id == @item.user_id
 
     redirect_to root_path
