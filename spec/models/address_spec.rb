@@ -16,7 +16,7 @@ RSpec.describe Address, type: :model do
       it 'purchaseが紐づいてないと保存できない' do
         @address.purchase = nil
         @address.valid?
-        expect(@address.errors.full_messages).to include("Purchase must exist")
+        expect(@address.errors.full_messages).to include('Purchase must exist')
       end
     end
   end

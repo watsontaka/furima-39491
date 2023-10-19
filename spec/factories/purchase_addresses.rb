@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :purchase_address do
-    post_code    { Faker::Address.zip_code }
+    post_code    { '123-4567' }
     region_id    { Faker::Number.between(from: 2, to: 48) }
     city         { Faker::Address.city }
     home_number  { Faker::Address.street_address }

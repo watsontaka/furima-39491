@@ -1,7 +1,5 @@
 FactoryBot.define do
   factory :item do
-    Faker::Config.locale = :ja
-
     association :user
 
     item_name    { Faker::Books::CultureSeries.book }

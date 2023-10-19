@@ -6,7 +6,6 @@ RSpec.describe Purchase, type: :model do
   end
 
   describe '購入情報アソシエーション' do
-
     context '保存できるとき' do
       it '正常に保存できるとき' do
         expect(@purchase).to be_valid
@@ -17,14 +16,13 @@ RSpec.describe Purchase, type: :model do
       it 'userが紐付いていないと保存できない' do
         @purchase.user = nil
         @purchase.valid?
-        expect(@purchase.errors.full_messages).to include("User must exist")
+        expect(@purchase.errors.full_messages).to include('User must exist')
       end
       it 'itemが紐付いていないと保存できない' do
         @purchase.item = nil
         @purchase.valid?
-        expect(@purchase.errors.full_messages).to include("Item must exist")
+        expect(@purchase.errors.full_messages).to include('Item must exist')
       end
     end
-
   end
 end
